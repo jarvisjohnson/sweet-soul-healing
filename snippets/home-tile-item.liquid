@@ -1,0 +1,30 @@
+<!-- snippets/home-tile-item.liquid -->
+
+<div class="column half no-pad">
+    <div class="rte content-row">{{ page_second.content }}</div>
+
+    {% include 'linklist-image-finder' %}
+
+       <div class="grid-image">
+         <a href="{{ link.url }}" title="{{ link.title }}" >
+           {% if have_image %}
+             <img src="{{ src }}" alt="{{ link.title | escape }}" />
+           {% else %}
+             <img src="{{ link.title | handle | append: '_' | append: image_size | append: '.png' | file_url }}" alt="{{ link.title | escape }}" />
+           {% endif %}
+         </a>
+       </div>
+       <div class="grid-footer">
+         <a href="{{ link.url }}" title="{{ link.title }}" >
+          <H4 class="tile-link">
+            {{ link.title }}  
+          </H4>
+        <p>{{ link.object.content | strip_html | truncatewords: 30 }}</p>
+        <p>read more >></p>
+         </a>
+       </div>       
+
+
+</div>
+
+<!-- END snippets/home-tile-item.liquid -->

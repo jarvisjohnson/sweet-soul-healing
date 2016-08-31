@@ -1,4 +1,4 @@
-<!-- snippets/grid-calculator.liquid -->
+<!-- snippets/home-grid-item.liquid -->
 
 {% include 'grid-calculator' %}
 
@@ -7,7 +7,7 @@
     {% include 'linklist-image-finder' %}
 
        <div class="grid-image">
-         <a href="{{ link.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" >
+         <a href="{{ link.url }}"  title="{{ link.title }}" >
           <H2 class="page-link">
             {{ link.title }}  
           </H2>
@@ -21,4 +21,4 @@
 
 </div>
 
-<!-- END snippets/grid-calculator.liquid -->
+<!-- END snippets/home-grid-item.liquid -->

@@ -1,0 +1,41 @@
+ <!-- snippets/linklist-image-finder.liquid -->
+
+       {% assign linked_page = link.object %}                    
+        {% assign have_image = false %}
+ 
+        {% comment %}
+          Does the page contain an image? If so, let's use it.
+        {% endcomment %}
+ 
+        {% if linked_page.content contains '<img' %}
+ 
+          {% assign have_image = true %}
+          {% assign src = linked_page.content | split: 'src="' %}
+          {% assign src = src[1] | split: '"' | first %}
+          {% capture image_suffix %}_{{ image_size }}.{% endcapture %}
+          {% assign src = src | replace: '_small.', image_suffix | replace: '_compact.', image_suffix | replace: '_medium.', image_suffix | replace: '_large.', image_suffix | replace: '_grande.', image_suffix %}
+        
+        {% comment %}
+          If the page contains no image, and that page features collections, let's grab the image of the first
+          collection on it.
+        {% endcomment %}
+ 
+        {% elsif linklists[linked_page.handle].links.size > 0 and linklists[linked_page.handle].links.first.type == 'collection_link' %}
+ 
+          {% assign have_image = true %}
+          {% assign collection = linklists[linked_page.handle].links.first.object %}
+ 
+          {% if collection.image %}
+            {% assign src = collection | img_url: image_size %}
+          {% else %}
+            {% assign src = collection.products.first | img_url: image_size %}
+          {% endif %}
+ 
+        {% endif %}
+ 
+       {% comment %}
+         Use capture to put the collection title in a variable that is used in liquid filters
+       {% endcomment %}
+       {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+
+ <!-- END snippets/linklist-image-finder.liquid -->

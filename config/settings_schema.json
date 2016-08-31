@@ -4,7 +4,7 @@
     "settings": [
       {
         "type": "header",
-        "content": "Alchemy Theme"
+        "content": "Alchemy Theme / Swish Web Developers"
       },
       {
         "type": "paragraph",
@@ -20,7 +20,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Need help? Contact us: [shopify@cleanthemes.co.uk](mailto:shopify@cleanthemes.co.uk)"
+        "content": "Need help? Contact us: [hello@swish.online](mailto:hello@swish.online)"
       }
     ]
   },
@@ -1415,28 +1415,24 @@
             "label": "(none)"
           },
           {
-            "value": "home-slideshow",
-            "label": "Slideshow"
+            "value": "home-tagline",
+            "label": "tagline"
           },
           {
             "value": "home-products",
             "label": "Products"
           },
           {
-            "value": "home-featured-images",
-            "label": "Featured images"
+            "value": "home-intro",
+            "label": "Intro Section"
           },
           {
-            "value": "home-content-1",
-            "label": "Content 1"
+            "value": "home-grid",
+            "label": "Grid Section"
           },
           {
-            "value": "home-content-2",
-            "label": "Content 2"
-          },
-          {
-            "value": "home-blog",
-            "label": "Blog"
+            "value": "home-bottom-tiles",
+            "label": "Tiles"
           }
         ]
       },
@@ -1449,28 +1445,24 @@
             "label": "(none)"
           },
           {
-            "value": "home-slideshow",
-            "label": "Slideshow"
+            "value": "home-tagline",
+            "label": "tagline"
           },
           {
             "value": "home-products",
             "label": "Products"
           },
           {
-            "value": "home-featured-images",
-            "label": "Featured images"
+            "value": "home-intro",
+            "label": "Intro Section"
           },
           {
-            "value": "home-content-1",
-            "label": "Content 1"
+            "value": "home-grid",
+            "label": "Grid Section"
           },
           {
-            "value": "home-content-2",
-            "label": "Content 2"
-          },
-          {
-            "value": "home-blog",
-            "label": "Blog"
+            "value": "home-bottom-tiles",
+            "label": "Tiles"
           }
         ]
       },
@@ -1483,28 +1475,24 @@
             "label": "(none)"
           },
           {
-            "value": "home-slideshow",
-            "label": "Slideshow"
+            "value": "home-tagline",
+            "label": "tagline"
           },
           {
             "value": "home-products",
             "label": "Products"
           },
           {
-            "value": "home-featured-images",
-            "label": "Featured images"
+            "value": "home-intro",
+            "label": "Intro Section"
           },
           {
-            "value": "home-content-1",
-            "label": "Content 1"
+            "value": "home-grid",
+            "label": "Grid Section"
           },
           {
-            "value": "home-content-2",
-            "label": "Content 2"
-          },
-          {
-            "value": "home-blog",
-            "label": "Blog"
+            "value": "home-bottom-tiles",
+            "label": "Tiles"
           }
         ]
       },
@@ -1517,28 +1505,24 @@
             "label": "(none)"
           },
           {
-            "value": "home-slideshow",
-            "label": "Slideshow"
+            "value": "home-tagline",
+            "label": "tagline"
           },
           {
             "value": "home-products",
             "label": "Products"
           },
           {
-            "value": "home-featured-images",
-            "label": "Featured images"
+            "value": "home-intro",
+            "label": "Intro Section"
           },
           {
-            "value": "home-content-1",
-            "label": "Content 1"
+            "value": "home-grid",
+            "label": "Grid Section"
           },
           {
-            "value": "home-content-2",
-            "label": "Content 2"
-          },
-          {
-            "value": "home-blog",
-            "label": "Blog"
+            "value": "home-bottom-tiles",
+            "label": "Tiles"
           }
         ]
       },
@@ -1551,62 +1535,25 @@
             "label": "(none)"
           },
           {
-            "value": "home-slideshow",
-            "label": "Slideshow"
+            "value": "home-tagline",
+            "label": "tagline"
           },
           {
             "value": "home-products",
             "label": "Products"
           },
+
           {
-            "value": "home-featured-images",
-            "label": "Featured images"
+            "value": "home-intro",
+            "label": "Intro Section"
           },
           {
-            "value": "home-content-1",
-            "label": "Content 1"
+            "value": "home-grid",
+            "label": "Grid Section"
           },
           {
-            "value": "home-content-2",
-            "label": "Content 2"
-          },
-          {
-            "value": "home-blog",
-            "label": "Blog"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "home_section_6",
-        "options": [
-          {
-            "value": "",
-            "label": "(none)"
-          },
-          {
-            "value": "home-slideshow",
-            "label": "Slideshow"
-          },
-          {
-            "value": "home-products",
-            "label": "Products"
-          },
-          {
-            "value": "home-featured-images",
-            "label": "Featured images"
-          },
-          {
-            "value": "home-content-1",
-            "label": "Content 1"
-          },
-          {
-            "value": "home-content-2",
-            "label": "Content 2"
-          },
-          {
-            "value": "home-blog",
-            "label": "Blog"
+            "value": "home-bottom-tiles",
+            "label": "Tiles"
           }
         ]
       },
@@ -1631,167 +1578,12 @@
     ]
   },
   {
-    "name": "Home page - slideshow",
+    "name": "Home page - tagline",
     "settings": [
       {
-        "type": "header",
-        "content": "Slide 1"
-      },
-      {
-        "type": "checkbox",
-        "id": "home_slide_1_show",
-        "label": "Show"
-      },
-      {
-        "type": "image",
-        "id": "home_slide_1.jpg",
-        "label": "Image",
-        "max-width": 2048,
-        "max-height": 1024,
-        "info": "1024 x 600px recommended"
-      },
-      {
         "type": "text",
-        "id": "home_slide_1_alt_text",
-        "label": "Alt text"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_1_url",
-        "label": "Link URL"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_1_text",
-        "label": "Text"
-      },
-      {
-        "type": "header",
-        "content": "Slide 2"
-      },
-      {
-        "type": "checkbox",
-        "id": "home_slide_2_show",
-        "label": "Show"
-      },
-      {
-        "type": "image",
-        "id": "home_slide_2.jpg",
-        "label": "Image",
-        "max-width": 2048,
-        "max-height": 1024,
-        "info": "1024 x 600px recommended"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_2_alt_text",
-        "label": "Alt text"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_2_url",
-        "label": "Link URL"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_2_text",
-        "label": "Text"
-      },
-      {
-        "type": "header",
-        "content": "Slide 3"
-      },
-      {
-        "type": "checkbox",
-        "id": "home_slide_3_show",
-        "label": "Show"
-      },
-      {
-        "type": "image",
-        "id": "home_slide_3.jpg",
-        "label": "Image",
-        "max-width": 2048,
-        "max-height": 1024,
-        "info": "1024 x 600px recommended"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_3_alt_text",
-        "label": "Alt text"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_3_url",
-        "label": "Link URL"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_3_text",
-        "label": "Text"
-      },
-      {
-        "type": "header",
-        "content": "Slide 4"
-      },
-      {
-        "type": "checkbox",
-        "id": "home_slide_4_show",
-        "label": "Show"
-      },
-      {
-        "type": "image",
-        "id": "home_slide_4.jpg",
-        "label": "Image",
-        "max-width": 2048,
-        "max-height": 1024,
-        "info": "1024 x 600px recommended"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_4_alt_text",
-        "label": "Alt text"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_4_url",
-        "label": "Link URL"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_4_text",
-        "label": "Text"
-      },
-      {
-        "type": "header",
-        "content": "Slide 5"
-      },
-      {
-        "type": "checkbox",
-        "id": "home_slide_5_show",
-        "label": "Show"
-      },
-      {
-        "type": "image",
-        "id": "home_slide_5.jpg",
-        "label": "Image",
-        "max-width": 2048,
-        "max-height": 1024,
-        "info": "1024 x 600px recommended"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_5_alt_text",
-        "label": "Alt text"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_5_url",
-        "label": "Link URL"
-      },
-      {
-        "type": "text",
-        "id": "home_slide_5_text",
-        "label": "Text"
+        "id": "home_tagline",
+        "label": "Tagline"
       }
     ]
   },
@@ -2051,7 +1843,7 @@
         "type": "header",
         "content": "Second column"
       },
-      {
+      {0
         "type": "checkbox",
         "id": "home_page_2_cols",
         "label": "Enable"

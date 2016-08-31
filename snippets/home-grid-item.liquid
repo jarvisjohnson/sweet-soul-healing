@@ -1,0 +1,24 @@
+<!-- snippets/grid-calculator.liquid -->
+
+{% include 'grid-calculator' %}
+
+<div class="prod-block column {{ col_class }} no-pad">
+
+    {% include 'linklist-image-finder' %}
+
+       <div class="grid-image">
+         <a href="{{ link.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" >
+          <H2 class="page-link">
+            {{ link.title }}  
+          </H2>
+           {% if have_image %}
+             <img src="{{ src }}" alt="{{ link.title | escape }}" />
+           {% else %}
+             <img src="{{ link.title | handle | append: '_' | append: image_size | append: '.png' | file_url }}" alt="{{ link.title | escape }}" />
+           {% endif %}
+         </a>
+       </div>
+
+</div>
+
+<!-- END snippets/grid-calculator.liquid -->

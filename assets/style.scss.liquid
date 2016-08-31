@@ -116,6 +116,10 @@ $nav-font-size-sub:			0.9em;
   @include clearfix();
 }
 
+.no-pad{
+  padding: 0!important;
+}
+
 /* Responsive images and videos. */
 img, iframe { max-width: 100%; }
 img { height: auto; }
@@ -2755,4 +2759,15 @@ html.template-password {
 /*************    |     ENTER YOUR CUSTOM CODE BELOW HERE       |   *************/
 /*************    ---                   ---                   ---   *************/
 
+
+.grid-image{
+  position: relative;
+}
+
+.page-link{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 

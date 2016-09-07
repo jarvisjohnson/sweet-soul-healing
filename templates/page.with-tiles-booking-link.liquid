@@ -1,0 +1,13 @@
+<!-- page.with-tiles-booking-link.liquid -->
+<h1>{{ page.title }}</h1>
+<div class="rte">
+  {{ page.content }}
+</div>
+<div class="content-row">
+<button class="booking-button">{{ 'Make an Appointment' | link_to: '/pages/contact' }}</button>
+</div>
+{% if settings.home_section_4 != blank %}
+  {% include settings.home_section_4 %}
+{% endif %}
+
+<!-- END page.with-tiles-booking-link.liquid -->

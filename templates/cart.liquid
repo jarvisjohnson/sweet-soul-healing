@@ -89,7 +89,9 @@
         <h2 class="subtotal">{{ cart.total_price | money }}</h2>
       </div>
       
+      {% comment %}
       <p class="comment">{{ 'cart.general.message' | t }}</p>
+      {% endcomment %}
       
       {% if settings.cart_note_show %}
       <p class="note-area">

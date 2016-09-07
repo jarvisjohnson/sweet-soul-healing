@@ -1,4 +1,5 @@
-<!-- product.liquid -->
+<!-- product-customizable.liquid -->
+
 
 {% assign variant = product.selected_or_first_available_variant %}
 {% assign featured_image = product.selected_or_first_available_variant.featured_image | default:product.featured_image %}
@@ -33,10 +34,12 @@
       </div>
     </div>
 
-
+        
     <div id="product-description" class="rte content-row" itemprop="description">
       {{ product.description }}
     </div>
+
+
     
     {% if variant.compare_at_price > variant.price %}
     <p><span class="sale-label">{{ 'products.product.sale' | t }}</span></p>
@@ -74,20 +77,37 @@
     <div class="product-form">
       
       <div id="product-variants" class="{% if product.variants.size == 1 %} hidden{% endif %}">
+        <label for="product-select">Choose Session Length: </label> 
         <select id="product-select" name="id" class="hidden">
           {% for variant in product.variants %}
           <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }} - {{ variant.price | money }}</option>
           {% endfor %}
         </select>
       </div>
-      
-      <span class="quantity-area">
+
+      <span>
+        TOTAL COST FOR THIS PACKAGE <span id="add"></span>
+      </span>
+
+      <span class="quantity-area" style="display: none;">
         <label for="quantity">{{ 'products.product.quantity' | t }}</label> <input class="quantity select-on-focus" id="quantity" name="quantity" value="1" />
       </span>
-      
-      <div id="product-add">
-        <button name="add" id="add">{{ variant.price | money }} <span class="div">|</span> {{ 'products.product.add_to_cart' | t }}</button>
-      </div>
+
+    <p class="line-item-property__field">
+      <input required class="required" id="your-name" type="text" name="properties[Your name]" placeholder="NAME *" >
+    </p>
+    <p class="line-item-property__field">
+      <input required class="required" id="phone-number" type="tel" name="properties[Phone Number]" placeholder="PHONE *" >
+    </p>
+    <p class="line-item-property__field">
+      <input required class="required" id="email" type="email" name="properties[Email]" placeholder="EMAIL *" >
+    </p>
+
+    {% include 'delivery-date' %}
+    
+    <p class="line-item-property__field">
+      <textarea id="issue" name="properties[Issue]" placeholder="PLEASE TELL ME A LITTLE BIT ABOUT YOUR ISSUE +" data-error="This information is confidential, and any information about what you are experiencing will help determine the right package for you."></textarea>
+    </p>
       
     </div><!-- .product-form -->
     
@@ -98,9 +118,32 @@
     {% else %}
     <h5>{{ 'products.product.product_unavailable' | t }}</h5>
     {% endif %}
+
+
+
+    <div class="rte">
+      <p>* + ALL INFORMATION PROVIDED IS KEPT STRICTLY CONFIDENTIAL. WE DO NOT SHARE YOUR PERSONAL INFORMATION.</p>
+    </div>
     
-    {% include 'social-sharing' %}
+    <div class="product-form">
+
+      <ul class="payment-methods">
+        {% for type in shop.enabled_payment_types %}
+        <li><img src="{{ type | payment_type_img_url }}" /></li>
+        {% endfor %}
+      </ul>
+      
+      <div id="product-add">
+        <button name="add">{{ 'products.product.add_to_cart' | t }}</button>
+      </div>
     
+    </div>
+
+    <div class="rte">
+      <p>^ Your card will be authorized for the amount of the appointment, but you will not be charged until we have contacted you to discuss and confirm your appointment.</p>
+    </div>
+
+
     {% assign display_image_size = settings.prod_page_img_size %}
     <div class="row clearfix">
       <div class="product-photos">
@@ -125,7 +168,6 @@
         {% endif %}
       </div><!-- .product-photos -->
     </div>
-  
 
   </form>
   
@@ -148,7 +190,6 @@ var selectCallback = function(variant, selector) {
       } else {
         jQuery('#add').removeClass('on-sale');
       }
-      addBtnText += ' <span class="div">|</span> ' + {{ 'products.product.add_to_cart' | t | json }};
       jQuery('#add').removeClass('disabled').removeAttr('disabled').html(addBtnText);
 
       // If item is backordered yet can still be ordered, we'll show special message.
@@ -198,4 +239,4 @@ jQuery(function($) {
 {% endif %}
 </script>
 
-<!-- END product.liquid -->
+<!-- END product-customizable.liquid -->

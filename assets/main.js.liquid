@@ -248,15 +248,15 @@ jQuery(function($){
       
       //Update header summary
       $.get(shopifyAjaxStorePageURL, function(data){
-        var cartSummarySelector = '#pageheader .checkout-link';
+        var cartSummarySelector = '#checkout-link';
         var $newCartObj = $($.parseHTML('<div>' + data + '</div>')).find(cartSummarySelector);
         var $currCart = $(cartSummarySelector);
         $currCart.replaceWith($newCartObj);
         //Show cart dropdown for a few seconds
         $newCartObj.addClass('reveal');
-        setTimeout(function(){
+        html.click(function(){
           $newCartObj.removeClass('reveal');
-        }, 4000);
+        });
       });
       
       

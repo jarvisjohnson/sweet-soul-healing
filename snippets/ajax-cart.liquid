@@ -1,0 +1,27 @@
+<!-- ajax-cart.liquid -->
+  {% if cart.item_count > 0 %}
+  <div class="popup-tab">
+    <div class="container">
+      <h1 class="cart-title">Cart</h1>
+      <div class="detail">  
+        {% for item in cart.items %}
+        <div class="item clearfix">
+          <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" />
+          <div class="right">
+            <a class="remove" href="/cart/change?line={{ forloop.index }}&quantity=0">X</a>
+            <div class="qty">{{ item.quantity }}</div>
+          </div>
+          <div class="detail">
+            <a class="title" href="{{ item.url }}">{{ item.product.title }}</a>
+            {% unless item.variant.title contains 'Default' %}<div class="variant">{{ item.variant.title }}</div>{% endunless %}
+              <div class="price">{{ item.price | money }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="total">{{ 'layout.header.total' | t }} {{ cart.total_price | money }}</div>
+        <a class="checkout" href="/cart">{{ 'layout.header.checkout' | t }}</a>
+      </div>
+      </div>
+    {% endif %}
+<!-- END ajax-cart.liquid -->

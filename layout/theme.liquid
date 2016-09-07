@@ -26,6 +26,7 @@
 
   {{ content_for_header }}
 
+  {{ "fonts.css"  | asset_url | stylesheet_tag }}
   {{ 'style.scss.css' | asset_url | stylesheet_tag }}
 
   <!--[if lt IE 9]>
@@ -62,60 +63,64 @@
     {% comment %} Heading images for each template {% endcomment %}
     {% include 'header-bg-image' %}
     
-    <div class="container">  
-      <div class="links-etc">
-        <button class="textbutton mobile-nav-toggle">{{ 'layout.mobile_header.close' | t }}</button>
-        
-        {% if settings.soc_icon_head %}
-        {% include 'social-icons' %}
-        {% endif %}
-        
-        {% if shop.customer_accounts_enabled %}
-        <span class="upper-link customer-links">
-          {% if customer %}
-          <a href="/account">{{ 'layout.customer.account' | t }}</a> {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          {% else %}
-          {{ 'layout.customer.log_in' | t | customer_login_link }}
-          {% if shop.customer_accounts_optional %}
-          {{ 'layout.customer.register' | t | customer_register_link }}
-          {% endif %}
-          {% endif %}
-        </span>
-        {% endif %}
-        
-        
-        <span class="upper-link checkout-link {% if cart.item_count > 0 %}has-popup-tab{% endif %}">
-          <a class="cart-summary" href="/cart">{{ 'layout.header.cart' | t }} ({{ cart.item_count }})</a>
-          {% if cart.item_count > 0 %}
-          <div class="popup-tab">
-            <div class="detail">  
-              {% for item in cart.items %}
-              <div class="item clearfix">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" />
-                <div class="right">
-                  <a class="remove" href="/cart/change?line={{ forloop.index }}&quantity=0">X</a>
-                  <div class="qty">{{ item.quantity }}</div>
+    <div class="navbar-holder">
+      <div class="container">  
+        <div class="links-etc">
+          <button class="textbutton mobile-nav-toggle">{{ 'layout.mobile_header.close' | t }}</button>
+          
+          <div class="nav-links-secondary" style="position: absolute">
+            {% if settings.soc_icon_head %}
+            {% include 'social-icons' %}
+            {% endif %}
+            
+            {% if shop.customer_accounts_enabled %}
+            <span class="upper-link customer-links">
+              {% if customer %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a> {{ 'layout.customer.log_out' | t | customer_logout_link }}
+              {% else %}
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
+              {% if shop.customer_accounts_optional %}
+              {{ 'layout.customer.register' | t | customer_register_link }}
+              {% endif %}
+              {% endif %}
+            </span>
+            {% endif %}
+            
+            
+            <span class="upper-link checkout-link uppercase {% if cart.item_count > 0 %}has-popup-tab{% endif %}">
+              <a class="cart-summary" href="/cart">{{ 'layout.header.cart' | t }} ({{ cart.item_count }})</a>
+              {% if cart.item_count > 0 %}
+              <div class="popup-tab">
+                <div class="detail">  
+                  {% for item in cart.items %}
+                  <div class="item clearfix">
+                    <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" />
+                    <div class="right">
+                      <a class="remove" href="/cart/change?line={{ forloop.index }}&quantity=0">X</a>
+                      <div class="qty">{{ item.quantity }}</div>
+                    </div>
+                    <div class="detail">
+                      <a class="title" href="{{ item.url }}">{{ item.product.title }}</a>
+                      {% unless item.variant.title contains 'Default' %}<div class="variant">{{ item.variant.title }}</div>{% endunless %}
+                      <div class="price">{{ item.price | money }}</div>
+                    </div>
+                  </div>
+                  {% endfor %}
                 </div>
-                <div class="detail">
-                  <a class="title" href="{{ item.url }}">{{ item.product.title }}</a>
-                  {% unless item.variant.title contains 'Default' %}<div class="variant">{{ item.variant.title }}</div>{% endunless %}
-                  <div class="price">{{ item.price | money }}</div>
-                </div>
+                <div class="total">{{ 'layout.header.total' | t }} {{ cart.total_price | money }}</div>
+                <a class="checkout" href="/cart">{{ 'layout.header.checkout' | t }}</a>
               </div>
-              {% endfor %}
-            </div>
-            <div class="total">{{ 'layout.header.total' | t }} {{ cart.total_price | money }}</div>
-            <a class="checkout" href="/cart">{{ 'layout.header.checkout' | t }}</a>
+              {% endif %}
+            </span>
+            
+            {% include 'currencies-switcher' %}
+
           </div>
-          {% endif %}
-        </span>
-        
-        {% include 'currencies-switcher' %}
-        
-        <nav role="navigation" class="nav">
-          {% include 'recursive-navigation-helper' with 'main-menu' %}
-        </nav>
-      </div>
+          
+          <nav role="navigation" class="nav">
+            {% include 'recursive-navigation-helper' with 'main-menu' %}
+          </nav>
+        </div>
       
       <div class="logo">
         {% if settings.use_logo_image %}
@@ -136,12 +141,13 @@
         
         {% if template == 'index' %}
         <h1 id="site-title" class="text{% if settings.use_logo_image %} hidden{% endif %}">
-          <a href="/">{{ shop.name }}</a>
+          <a class="doodles" href="/">{{ shop.name  | remove: "Healing" | remove: " " }}</a>
         </h1>
         {% else %}
-        <a id="site-title" class="text{% if settings.use_logo_image %} hidden{% endif %}" href="/">{{ shop.name }}</a>
+        <a id="site-title" class="text{% if settings.use_logo_image %} hidden{% endif %}" href="/">{{ shop.name | remove: ' '}}</a>
         {% endif %}
       </div>
+    </div>
     </div>
   </header>
   
@@ -151,26 +157,18 @@
       {{ content_for_layout }}
     </div>
 
-    <footer id="pagefooter">
-  
-      {% if linklists.footer.links.size > 0 %}
-      <nav class="nav" role="navigation">
-        <ul>
-          {% for link in linklists.footer.links %}
-          <li><a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
-      {% endif %}
-      
-      {% if settings.soc_icon_foot %}
-      {% include 'social-icons' %}
-      {% endif %}
+  </div><!-- end of .container -->
+
+    <footer id="pagefooter"> 
       
       <p class="copyright" role="contentinfo">
-        <span class="seg">&copy; {{ "now" | date: "%Y" }} {{ shop.name | link_to: '/' }}</span>
+        <span class="seg">{{ shop.name | link_to: '/' }}</span>
+        <span class="seg">{{ shop.phone }}</span>
+        <span class="seg">{{ shop.email }}</span>
+        {{ shop.address.summary }}
+      </p>
+      <p class="copyright" role="contentinfo">
         {{ 'layout.footer.theme_by_html' | t }}
-        {{ powered_by_link }}
       </p>
 
       <ul class="payment-methods">
@@ -180,8 +178,7 @@
       </ul>
       
     </footer>
-    
-  </div><!-- end of .container -->
+
   
   <!-- Search form -->
   <div id="search-modal">

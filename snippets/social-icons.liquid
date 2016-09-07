@@ -30,6 +30,8 @@
   <a title="Google+" class="google" target="_blank" href="{{ settings.social_google_url }}"><i class="icon-googleplus"><span>Google+</span></i></a>
   {% endif %}
   <span class="div">|</span>
+  {%  comment  %}
   {% capture search_label %}{{ 'layout.header.search_label' | t }}{% endcapture %}
   <a title="Search" class="search {% if search_label != blank %}lozenge{% endif %}" href="/search"><i class="icon-mag"></i>{{ search_label }}</a>
+  {%  endcomment  %}
 </div><!-- .social -->

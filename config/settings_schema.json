@@ -4,7 +4,7 @@
     "settings": [
       {
         "type": "header",
-        "content": "Alchemy Theme / Swish Web Developers"
+        "content": "Alchemy Theme  \/ Swish Web Developers"
       },
       {
         "type": "paragraph",
@@ -91,6 +91,11 @@
             "label": "Top center, no repeat"
           }
         ]
+      },
+      {
+        "type": "color",
+        "id": "col_footer_bg",
+        "label": "Main"
       },
       {
         "type": "header",
@@ -1542,7 +1547,6 @@
             "value": "home-products",
             "label": "Products"
           },
-
           {
             "value": "home-intro",
             "label": "Intro Section"
@@ -1574,6 +1578,16 @@
         "type": "text",
         "id": "head_img_home_text",
         "label": "Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "head_img_home_icon_show",
+        "label": "Show"
+      },
+      {
+        "type": "image",
+        "id": "head_img_home_icon.png",
+        "label": "Header Icon"
       }
     ]
   },
@@ -1843,7 +1857,7 @@
         "type": "header",
         "content": "Second column"
       },
-      {0
+      {
         "type": "checkbox",
         "id": "home_page_2_cols",
         "label": "Enable"

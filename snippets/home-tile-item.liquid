@@ -1,7 +1,7 @@
 <!-- snippets/home-tile-item.liquid -->
 
 <div class="column half no-pad">
-    <div class="rte content-row">{{ page_second.content }}</div>
+    <div class="rte">{{ page_second.content }}</div>
 
     {% include 'linklist-image-finder' %}
 
@@ -16,11 +16,11 @@
        </div>
        <div class="grid-footer">
          <a href="{{ link.url }}" title="{{ link.title }}" >
-          <H4 class="tile-link">
+          <span class="prod-price uppercase">
             {{ link.title }}  
-          </H4>
-        <p>{{ link.object.content | strip_html | truncatewords: 30 }}</p>
-        <p>read more >></p>
+          </span>
+        <p class="gutter">{{ link.object.content | strip_html | truncatewords: 30 }}</p>
+        <p class="read-more">read more</p>
          </a>
        </div>       
 

@@ -1,6 +1,6 @@
-<!-- snippets/product-grid-item.liquid -->
+<!-- snippets/collection-grid-item.liquid -->
 
-{% capture col_class %}quarter {% cycle 'clear_products': 'first-in-row', '', '', '' %}{% endcapture %}
+{% include 'grid-calculator' %}
 
 <div class="prod-block column {{ col_class }} {% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}">
 
@@ -53,4 +53,4 @@
   
 </div>
 
-<!-- END snippets/product-grid-item.liquid -->
+<!-- END snippets/collection-grid-item.liquid -->

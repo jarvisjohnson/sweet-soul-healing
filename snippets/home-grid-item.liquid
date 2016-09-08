@@ -1,6 +1,6 @@
 <!-- snippets/home-grid-item.liquid -->
 
-{% include 'grid-calculator' %}
+{% capture col_class %}quarter {% cycle 'clear_products': 'first-in-row', '', '', '' %}{% endcapture %}
 
 <div class="prod-block column {{ col_class }} no-pad">
 

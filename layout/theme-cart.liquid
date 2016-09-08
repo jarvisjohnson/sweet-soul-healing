@@ -1,0 +1,218 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->  
+<head>
+  <!-- Alchemy v1.3.2 -->
+  
+  <meta charset="utf-8" />
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
+
+  <title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}" />
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  {% include 'google-fonts-import' %}
+  {% include 'open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  {{ content_for_header }}
+
+  {{ "fonts.css"  | asset_url | stylesheet_tag }}
+  {{ 'style.scss.css' | asset_url | stylesheet_tag }}
+
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  <![endif]-->
+
+  {% if template contains 'customers' %}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+  
+  {% comment %}
+  Needed when shopify_common.js is used.
+  {% endcomment %}
+  <!--[if lt IE 8]>
+  {{ 'json2.js' | shopify_asset_url | script_tag }}
+  <![endif]-->
+
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+</head>
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template contains 'customers' %} template-customer-area{% endif %}" >
+
+  <div id="mobile-nav">
+    <button class="textbutton mobile-nav-toggle">{{ 'layout.mobile_header.menu' | t }}<span></span><span></span><span></span></button>
+    <a class="cart-summary" href="/cart">{{ 'layout.mobile_header.cart' | t }} ({{ cart.item_count }})</a>
+  </div>
+  
+  <header id="pageheader">
+
+    {% comment %} Heading images for each template {% endcomment %}
+    {% include 'header-bg-image' %}
+    
+    <div class="navbar-holder">
+      <div class="container">  
+        <div class="links-etc">
+          <button class="textbutton mobile-nav-toggle">{{ 'layout.mobile_header.close' | t }}</button>
+          
+          <div class="nav-links-secondary" style="position: absolute">
+            {% if settings.soc_icon_head %}
+            {% include 'social-icons' %}
+            {% endif %}
+            
+            {% if shop.customer_accounts_enabled %}
+            <span class="upper-link customer-links">
+              {% if customer %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a> {{ 'layout.customer.log_out' | t | customer_logout_link }}
+              {% else %}
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
+              {% if shop.customer_accounts_optional %}
+              {{ 'layout.customer.register' | t | customer_register_link }}
+              {% endif %}
+              {% endif %}
+            </span>
+            {% endif %}
+            
+            
+            <span class="upper-link checkout-link uppercase" style="visibility: hidden">
+              <a class="cart-summary" href="#">{{ 'layout.header.cart' | t }} ({{ cart.item_count }})</a>
+            </span>
+            
+            {% include 'currencies-switcher' %}
+
+          </div>
+          
+          <nav role="navigation" class="nav">
+            {% include 'recursive-navigation-helper' with 'main-menu' %}
+          </nav>
+        </div>
+      
+      <div class="logo">
+
+        <h1 id="site-title" class="text{% if settings.use_logo_image %} hidden{% endif %}">
+          <a class="doodles" href="/">{{ shop.name  | remove: "Healing" | remove: " " }}</a>
+        </h1>
+
+      </div>
+    </div>
+    </div>
+  </header>
+
+              <span id="checkout-link" class="upper-link checkout-link uppercase {% if cart.item_count > 0 %}has-popup-tab{% endif %}">
+              <a class="cart-summary" href="/cart">{{ 'layout.header.cart' | t }} ({{ cart.item_count }})</a>
+              {% if cart.item_count > 0 %}
+              <div class="popup-tab">
+                <div class="detail">  
+                  {% for item in cart.items %}
+                  <div class="item clearfix">
+                    <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" />
+                    <div class="right">
+                      <a class="remove" href="/cart/change?line={{ forloop.index }}&quantity=0">X</a>
+                      <div class="qty">{{ item.quantity }}</div>
+                    </div>
+                    <div class="detail">
+                      <a class="title" href="{{ item.url }}">{{ item.product.title }}</a>
+                      {% unless item.variant.title contains 'Default' %}<div class="variant">{{ item.variant.title }}</div>{% endunless %}
+                      <div class="price">{{ item.price | money }}</div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="total">{{ 'layout.header.total' | t }} {{ cart.total_price | money }}</div>
+                <a class="checkout" href="/cart">{{ 'layout.header.checkout' | t }}</a>
+              </div>
+              {% endif %}
+            </span>
+  
+  <div class="container">
+
+    <div id="main" role="main">
+      {{ content_for_layout }}
+    </div>
+
+  </div><!-- end of .container -->
+
+    <footer id="pagefooter"> 
+      
+      <p class="copyright" role="contentinfo">
+        <span class="seg">{{ shop.name | link_to: '/' }}</span>
+        <span class="seg">{{ shop.phone }}</span>
+        <span class="seg">{{ shop.email }}</span>
+        {{ shop.address.summary }}
+      </p>
+      <p class="copyright" role="contentinfo">
+        {{ 'layout.footer.theme_by_html' | t }}
+      </p>
+
+
+      
+    </footer>
+
+  
+  <!-- Search form -->
+  <div id="search-modal">
+    <div class="container">
+      <form action="/search" method="get">
+        
+        {% comment %} Remove the following line to search everything, not just products {% endcomment %}
+        <input type="hidden" name="type" value="product">
+        
+        <input type="text" name="q" placeholder="{{ 'general.search.placeholder' | t }}" autocomplete="off" required/><input type="submit" value="&rarr;" />
+      </form>
+    </div>
+  </div>
+  
+  <!-- Scroll to top -->
+  <a id="scroll-top" href="#">{{ 'general.scroll_up.to_top' | t }}</a>
+  
+  {{ 'libs.js'  | asset_url | script_tag }}
+  {{ 'main.js'  | asset_url | script_tag }}
+  {% include 'currencies' %}
+  {% if template contains 'product' %}
+<script>
+jQuery(function($) {
+  $('form[action="/cart/add"]').submit(function() {
+    var formIsValid = true;
+    var message = "Please fill this out and you will be able to add the item to your cart.";
+    $(this).find('[name^="properties"]').filter('.required, [required="required"]').each(function() {
+      $(this).removeClass('error');
+      if (formIsValid && $(this).val() == '') {
+        formIsValid = false;
+        message = $(this).attr('data-error') || message;
+        $(this).addClass('error');
+      }
+    });
+    if (formIsValid){
+      return true;
+    }
+    else {
+      alert(message);
+      return false;
+    }
+  }).find('input, select, textarea').focus(function() {
+    $(this).removeClass('error');
+  });
+});
+</script>
+{% endif %}
+
+<style>
+input.error, select.error, textarea.error {
+  border-color: red;
+}
+</style>
+</body>
+</html>

@@ -241,7 +241,7 @@
       "register": "Register"
     },
     "footer": {
-      "theme_by_html": "Design: <a href=\"http:\/\/mattbroughtondesign.com\/\" target=\"_blank\">Matt Broughton Design<\/a><span>   </span>Development: <a href=\"http:\/\/swish.online\/\" target=\"_blank\">Swish<\/a>"
+      "theme_by_html": "Design: <a href=\"http:\/\/mattbroughtondesign.com\/\" target=\"_blank\">Matt Broughton Design<\/a><span>   <\/span>Development: <a href=\"http:\/\/swish.online\/\" target=\"_blank\">Swish<\/a>"
     }
   },
   "products": {
@@ -254,7 +254,7 @@
       "product_unavailable": "This product is unavailable",
       "pick_a": "Pick a",
       "expand_images": "Enlarge all images",
-      "add_to_cart": "Add",
+      "add_to_cart": "Book Appointment ^",
       "adding_to_cart": "Adding...",
       "added_to_cart": "Added to cart"
     },

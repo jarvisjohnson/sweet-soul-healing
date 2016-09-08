@@ -34,6 +34,31 @@
       </div>
     </div>
 
+    {% assign display_image_size = settings.prod_page_img_size %}
+    <div class="row clearfix">
+      <div class="product-photos">
+        <div class="main">
+          {% if settings.prod_lightbox %}
+          {% assign master_url = featured_image | img_url: 'master' %}
+          {{ featured_image | img_url: display_image_size | img_tag: featured_image.alt | link_to: master_url, featured_image.alt }}
+          {% else %}
+          {{ featured_image | img_url: display_image_size | img_tag: featured_image.alt }}
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+        <div class="thumbnails">
+          <div><a class="load-all-thumbs button" href="#">{{ 'products.product.expand_images' | t }}</a></div>
+          
+          {% for image in product.images %}
+          <a class="thumb" {% if image.src == featured_image %} class="active" {% endif %} title="{{ image.alt | escape }}" href="{{ image | product_img_url: 'master' }}" data-display-url="{{ image | product_img_url: display_image_size }}">
+            <img src="{{ image | img_url: 'small' }}" alt="{{ image.alt | escape }}"/>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div><!-- .product-photos -->
+    </div> 
+
         
     <div id="product-description" class="rte" itemprop="description">
       {{ product.description }}
@@ -98,25 +123,21 @@
         </div>
       </div>
 
-      <div class="rte">
+    <p class="line-item-property__field">
+      <input required class="required" id="your-name" type="text" name="properties[Your name]" placeholder="NAME *" >
+    </p>
+    <p class="line-item-property__field">
+      <input required class="required" id="phone-number" type="tel" name="properties[Phone Number]" placeholder="PHONE *" >
+    </p>
+    <p class="line-item-property__field">
+      <input required class="required" id="email" type="email" name="properties[Email]" placeholder="EMAIL *" >
+    </p>
 
-        <p class="line-item-property__field half-field">
-          <input required class="required" id="your-name" type="text" name="properties[Your name]" placeholder="NAME *" >
-        </p>
-        <p class="line-item-property__field half-field">
-          <input required class="required" id="phone-number" type="tel" name="properties[Phone Number]" placeholder="PHONE *" >
-        </p>
-        <p class="line-item-property__field half-field">
-          <input required class="required" id="email" type="email" name="properties[Email]" placeholder="EMAIL *" >
-        </p>
-
-        {% include 'delivery-date' %}
-        
-        <p class="line-item-property__field">
-          <textarea id="issue" name="properties[Issue]" placeholder="PLEASE TELL ME A LITTLE BIT ABOUT YOUR ISSUE +" data-error="This information is confidential, and any information about what you are experiencing will help determine the right package for you."></textarea>
-        </p>
-
-      </div>
+    {% include 'delivery-date' %}
+    
+    <p class="line-item-property__field">
+      <textarea id="issue" name="properties[Issue]" placeholder="PLEASE TELL ME A LITTLE BIT ABOUT YOUR ISSUE +" data-error="This information is confidential, and any information about what you are experiencing will help determine the right package for you."></textarea>
+    </p>
       
     </div><!-- .product-form -->
     
@@ -131,7 +152,7 @@
 
 
     <div class="rte">
-      <p class="smaller">* + ALL INFORMATION PROVIDED IS KEPT STRICTLY CONFIDENTIAL. WE DO NOT SHARE YOUR PERSONAL INFORMATION.</p>
+      <p>* + ALL INFORMATION PROVIDED IS KEPT STRICTLY CONFIDENTIAL. WE DO NOT SHARE YOUR PERSONAL INFORMATION.</p>
     </div>
     
     <div class="product-form rte">
@@ -149,17 +170,13 @@
     </div>
 
     <div class="rte">
-      <p class="smaller">^ Your card will be authorized for the amount of the appointment, but you will not be charged until we have contacted you to discuss and confirm your appointment.</p>
+      <p>^ Your card will be authorized for the amount of the appointment, but you will not be charged until we have contacted you to discuss and confirm your appointment.</p>
     </div>
+
+
 
   </form>
   
-</div>
-
-<div class="product-foot">
-  {% if settings.home_section_3 != blank %}
-    {% include settings.home_section_3 %}
-  {% endif %}
 </div>
 
 <script>

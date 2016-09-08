@@ -241,7 +241,7 @@
       "register": "Register"
     },
     "footer": {
-      "theme_by_html": "Design: <a href=\"http:\/\/mattbroughtondesign.com\/\" target=\"_blank\">Matt Broughton Design  <\/a>  Development: <a href=\"http:\/\/swish.online\/\" target=\"_blank\">Swish<\/a>"
+      "theme_by_html": "Design: <a href=\"http:\/\/mattbroughtondesign.com\/\" target=\"_blank\">Matt Broughton Design<\/a><span>   </span>Development: <a href=\"http:\/\/swish.online\/\" target=\"_blank\">Swish<\/a>"
     }
   },
   "products": {

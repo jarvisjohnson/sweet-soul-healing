@@ -99,7 +99,7 @@
     "prod_show_brand": false,
     "prod_lightbox": true,
     "prod_page_img_size": "2048x2048",
-    "coll_prods_perrow": "4",
+    "coll_prods_perrow": "2",
     "prod_thumb_img_ratio_simple": "66.67",
     "show_article_feat_img_on_article": true,
     "cart_type": "ajax",

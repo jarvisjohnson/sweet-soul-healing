@@ -19,7 +19,20 @@
           <span class="prod-price uppercase">
             {{ link.title }}  
           </span>
-        <p class="gutter">{{ link.object.content | strip_html | truncatewords: 30 }}</p>
+        <p class="gutter">
+       {% assign linked_page = link.object %}  
+        {% comment %}
+          First, check if the link is to the blog.
+        {% endcomment %}
+          {% if link.type == 'blog_link' %}  
+             {% for article in blogs.news.articles limit: 1 %}
+
+                {% assign linked_page = article %}
+
+            {% endfor %}
+        {% endif %}  
+        {{ linked_page.content | strip_html | truncate: 150 }}
+        </p>
         <p class="read-more">read more</p>
          </a>
        </div>       

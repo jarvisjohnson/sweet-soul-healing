@@ -2,20 +2,20 @@
 
 {% include 'grid-calculator' %}
 
-<div class="prod-block column {{ col_class }} {% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}">
+<div class="prod-block prod-list column {{ col_class }} {% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}">
 
   <div class="prod-image-wrap">
     <a href="{{ product.url | within: collection }}">
       <span class="helper"></span>
       <div style="display: inline"><img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
       </div>
-        <h3 class="product-title white">{{ product.title }}</h3>
     </a>
   </div><!-- .prod-image-wrap -->
 
   <div class="grid-footer smaller">
     <a href="{{ product.url | within: collection }}" title="{{ product.title | within: collection }}">
      <p class="gutter">
+        <h3 class="product-title white">{{ product.title }}</h3>
           {{ product.description | strip_html | truncate: 150 }}
       </p>
       <span class="prod-price uppercase">

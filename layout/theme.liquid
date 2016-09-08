@@ -124,6 +124,11 @@
 
     <div id="main" role="main">
       {{ content_for_layout }}
+      
+      {% if settings.home_section_5 != blank %}
+        {% include settings.home_section_5 %}
+      {% endif %}
+
     </div>
 
   </div><!-- end of .container -->
@@ -164,6 +169,12 @@
   {{ 'libs.js'  | asset_url | script_tag }}
   {{ 'main.js'  | asset_url | script_tag }}
   {% include 'currencies' %}
+
+  {% if template != 'index' %}
+  <script>
+  jQuery("#main .rte p:not(:nth-of-type(2))").addClass("smaller");
+  </script>
+  {% endif %}
   
 </body>
 </html>

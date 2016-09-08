@@ -243,7 +243,7 @@ jQuery(function($){
         $btn[contentFunc]({{ 'products.product.added_to_cart' | t | json }});
         setTimeout(function(){
           $btn.removeAttr('disabled')[contentFunc]($btn.data('previous-value'));
-        }, 4000);
+        }, 10000);
       });
       
       //Update header summary
@@ -254,9 +254,11 @@ jQuery(function($){
         $currCart.replaceWith($newCartObj);
         //Show cart dropdown for a few seconds
         $newCartObj.addClass('reveal');
-        html.click(function(){
-          $newCartObj.removeClass('reveal');
-        });
+        $('body').click(function(e) {
+           if ($(e.target).closest('.popup-tab.container').length === 0) {
+        $newCartObj.removeClass('reveal');
+             }
+          });   
       });
       
       

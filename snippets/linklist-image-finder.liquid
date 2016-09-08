@@ -1,7 +1,19 @@
  <!-- snippets/linklist-image-finder.liquid -->
-       {% assign linked_page = link.object %}                    
+       {% assign linked_page = link.object %}  
+        {% comment %}
+          First, check if the link is to the blog.
+        {% endcomment %}
+          {% if link.type == 'blog_link' %}  
+             {% for article in blogs.news.articles limit: 1 %}
+
+                {% assign linked_page = article %}
+
+            {% endfor %}
+          {% endif %}                    
         {% assign have_image = false %}
- 
+    
+    
+
         {% comment %}
           Does the page contain an image? If so, let's use it.
         {% endcomment %}
@@ -19,15 +31,15 @@
           collection on it.
         {% endcomment %}
  
-        {% elsif linklists[linked_page.handle].links.size > 0 and linklists[linked_page.handle].links.first.type == 'collection_link' %}
+        {% elsif link.type == 'collection_link' %}  
  
           {% assign have_image = true %}
-          {% assign collection = linklists[linked_page.handle].links.first.object %}
+          {% assign collection = linked_page %}
  
           {% if collection.image %}
-            {% assign src = collection | img_url: image_size %}
+            {% assign src = collection | img_url: 'master' %}
           {% else %}
-            {% assign src = collection.products.first | img_url: image_size %}
+            {% assign src = collection.products.first | img_url: 'master' %}
           {% endif %}
  
         {% endif %}

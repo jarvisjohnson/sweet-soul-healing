@@ -1,3 +1,6 @@
+<!-- page.with-tiles.liquid -->
+<h1 style="text-transform: lowercase">{{ page.title }}</h1>
+<div class="rte">
 {% assign num_per_page = settings.coll_prods_perrow | times: 4 %}
 {% paginate collection.products by num_per_page %}
 
@@ -45,11 +48,9 @@ so in comparisons we need to escape type and vendor.
 </ul>
 {% endif %}
 
-
-
 <div class="grid product-list clearfix">
 {% for product in collection.products %}
-  {% include 'product-list-item' %}
+  {% include 'product-grid-item' %}
 {% else %}
   <p><em>{{ 'collections.general.no_matches' | t }}</em></p>
 {% endfor %}
@@ -62,7 +63,10 @@ so in comparisons we need to escape type and vendor.
 {% endif %}
 
 {% endpaginate %}
+</div>
 
 {% if settings.home_section_4 != blank %}
   {% include settings.home_section_4 %}
 {% endif %}
+
+<!-- END page.with-tiles.liquid -->

@@ -16,6 +16,22 @@
             {% unless item.variant.title contains 'Default' %}<div class="variant">{{ item.variant.title }}</div>{% endunless %}
               <div class="price">{{ item.price | money }}</div>
             </div>
+            {% comment %}
+            Line Item Properties
+            {% endcomment %}
+              <div class="smaller">
+              {% for p in item.properties %}
+                {% unless p.last == blank %}
+                  {{ p.first }}:
+                  {% if p.last contains '/uploads/' %}
+                  <a class="lightbox" href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                  {{ p.last }}
+                  {% endif %}
+                  <br />
+                {% endunless %}
+              {% endfor %}
+              </div>
           </div>
           {% endfor %}
         </div>

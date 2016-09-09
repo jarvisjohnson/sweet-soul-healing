@@ -53,6 +53,8 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template contains 'customers' %} template-customer-area{% endif %}" >
 
+<div id="body-wrap">
+
   <div id="mobile-nav">
     <button class="textbutton mobile-nav-toggle">{{ 'layout.mobile_header.menu' | t }}<span></span><span></span><span></span></button>
     <a class="cart-summary" href="/cart">{{ 'layout.mobile_header.cart' | t }} ({{ cart.item_count }})</a>
@@ -175,6 +177,6 @@
   jQuery("#main .rte p:not(:nth-of-type(2))").addClass("smaller");
   </script>
   {% endif %}
-  
+</div>
 </body>
 </html>

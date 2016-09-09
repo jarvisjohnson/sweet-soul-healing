@@ -1,29 +1,21 @@
-<!-- snippets/product-grid-item.liquid -->
+<!-- snippets/product-list-item.liquid -->
 
 {% include 'grid-calculator' %}
 
 <div class="prod-block prod-list column {{ col_class }} {% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}">
 
   <div class="prod-image-wrap">
-    <a href="{{ product.url | within: collection }}">
-      <span class="helper"></span>
-      <div style="display: inline"><img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
-      </div>
-    </a>
+    <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" /></a>
   </div><!-- .prod-image-wrap -->
 
   <div class="grid-footer smaller">
     <a href="{{ product.url | within: collection }}" title="{{ product.title | within: collection }}">
-     <p class="gutter">
-        <h3 class="product-title white">{{ product.title }}</h3>
+     <span class="gutter">
+        <h4 class="product-title left uppercase bold">{{ product.title }}</h4>
           {{ product.description | strip_html | truncate: 150 }}
-      </p>
-      <span class="prod-price uppercase">
-        {% if product.price_varies %}{{ 'products.listing.from' | t }}{% endif %}
-        {{ product.price | money | remove: '.00' }}
-        {% if on_sale %}
-        <s class="compare-at-price">{{ product.compare_at_price | money }}</s>
-        {% endif %}
+      </span>
+     <span class="gutter">
+        <p class="read-more">read more</p>
       </span>
     </a>
   </div>    
@@ -53,4 +45,4 @@
   
 </div>
 
-<!-- END snippets/product-grid-item.liquid -->
+<!-- END snippets/product-list-item.liquid -->

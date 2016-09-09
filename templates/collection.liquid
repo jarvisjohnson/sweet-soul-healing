@@ -49,7 +49,12 @@ so in comparisons we need to escape type and vendor.
 
 <div class="grid product-list clearfix">
 {% for product in collection.products %}
+  <div class="mob-hide">
   {% include 'product-list-item' %}
+  </div>
+  <div class="mob-show">
+  {% include 'product-grid-item' %}
+  </div>  
 {% else %}
   <p><em>{{ 'collections.general.no_matches' | t }}</em></p>
 {% endfor %}

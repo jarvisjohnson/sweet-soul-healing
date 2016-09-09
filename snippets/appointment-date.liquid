@@ -1,14 +1,15 @@
 {{ '//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css' | stylesheet_tag }}
 {{ '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js' | script_tag }}
 
-  <p class="line-item-property__field half-field">
-    <input required class="required" id="date" type="text" name="properties[Preferred Date]" value="{{ cart.attributes.date }}" placeholder="PREFERRED BOOKING DATE *" />
+    <div class="large_form">
+      <label for="app-date">What is your preferred appointment date?</label>
+      <input id="app-date" type="text" name="contact[date]" />
     <span style="display:block" class="instructions">We'll contact you to schedule your appointment.</span>
-  </p>
+    </div>  
 
 <script>
 jQuery(function() {
-  jQuery("#date").datepicker( { 
+  jQuery("#app-date").datepicker( { 
     minDate: +1, 
     maxDate: '+2M',
     beforeShowDay: jQuery.datepicker.noWeekends

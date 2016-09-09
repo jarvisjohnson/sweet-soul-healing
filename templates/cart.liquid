@@ -44,21 +44,19 @@
             {% comment %}
             Line Item Properties
             {% endcomment %}
-            {% if item.properties.size > 0 %}
-            <p>
+              <div class="smaller">
               {% for p in item.properties %}
-              {% unless p.last == blank %}
-              {{ p.first }}:
-              {% if p.last contains '/uploads/' %}
-              <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-              {% else %}
-              {{ p.last }}
-              {% endif %}
-              <br />
-              {% endunless %}
+                {% unless p.last == blank %}
+                  {{ p.first }}:
+                  {% if p.last contains '/uploads/' %}
+                  <a class="lightbox" href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                  {{ p.last }}
+                  {% endif %}
+                  <br />
+                {% endunless %}
               {% endfor %}
-            </p>
-            {% endif %}
+              </div>
           </div>
         </div>
         <div class="col-notdesc">

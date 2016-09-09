@@ -254,9 +254,11 @@ jQuery(function($){
         $currCart.replaceWith($newCartObj);
         //Show cart dropdown for a few seconds
         $newCartObj.addClass('reveal');
+        $('body').addClass('no-scroll');
         $('body').click(function(e) {
            if ($(e.target).closest('.popup-tab.container').length === 0) {
         $newCartObj.removeClass('reveal');
+        $('body').removeClass('no-scroll');
              }
           });   
       });
@@ -283,7 +285,8 @@ jQuery(function($){
     return false;
   });
   {% endif %}
-       
+
+
   //General lightbox for all
   $('a[rel=lightbox]').colorbox({ maxWidth: '94%' });
        

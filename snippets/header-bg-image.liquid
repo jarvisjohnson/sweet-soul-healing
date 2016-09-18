@@ -40,16 +40,20 @@ Checks if an image is available for the current template, and outputs it if it i
 <div class="head-img-cont fillmode-{{ settings.head_img_fill }}" {% if settings.head_img_fill != 'cover' %}style="background-image: url({{ bg_img }})"{% endif %}>
   <img class="background" src="{{ bg_img }}" alt="{{ shop.name | escape }}" />
   {% if settings.head_img_home_text_show and template contains 'index' %}
-  <div class="overlay scaled-text-base"><div class="inner"><div><h1 class="text" style="font-size:100%"><span style="font-size:110%">
-    {% if settings.head_img_home_text == blank %}
-    {{ 'home_page.onboarding.heading_welcome' | t }}
-    {% else %}
-    {% assign icon_img = 'head_img_home_icon.png' | asset_url %}
-    <img style="max-width:230px;" src="{{ icon_img }}" alt="{{ shop.name | escape }}" />
-    <h1><span class="doodles">{{ shop.name  | remove: "Healing" | remove: " " }}</span><br>
-    <span class="dots">{{ settings.head_img_home_text }}</span></h1>
-    {% endif %}
-    </span></h1></div></div></div>
+  <div class="overlay scaled-text-base"><div class="inner"><div>
+
+
+ {% comment %}
+ Use the uploaded logo from theme settings if enabled.
+ Site name gets precedence with H1 tag on homepage, div on other pages.
+ {% endcomment %}
+   <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
+       <a href="/" itemprop="url" class="site-header__logo-link">
+         {% include 'logo' %}
+       </a>
+    </div>
+    
+</div></div></div>
   {% endif %}
 </div>
 {% endif %}

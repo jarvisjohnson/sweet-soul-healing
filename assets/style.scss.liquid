@@ -2892,7 +2892,10 @@ html.template-password {
 /*************    ---                   ---                   ---   *************/
 /*************    |     ENTER YOUR CUSTOM CODE BELOW HERE       |   *************/
 /*************    ---                   ---                   ---   *************/
-
+.site-header__logo a svg{
+    width: 550px;
+    max-width: 35%;
+ }
 
 .grid-image{
   position: relative;
@@ -3095,12 +3098,20 @@ h2.white{
 /* Media queries for different screen sizes */
 @media screen and (max-width: 1200px) {
 }
+// @media screen and (max-width: $breakpoint-medium-screen) {
+//   .site-header__logo a svg{
+//     width: 60%;
+//   }
+// }
 @media screen and (max-width: $breakpoint-small-screen) {
   h1.text {
     font-size: 65% !important;
     img{
       max-width: 170px !important;
     }
+  }
+  .site-header__logo a svg{
+    width: 75%;
   }
   h1 {
     padding-top: $gutter;

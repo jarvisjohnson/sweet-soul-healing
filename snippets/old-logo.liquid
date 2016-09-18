@@ -1,0 +1,11 @@
+  <h1 class="text" style="font-size:100%"><span style="font-size:110%">
+    {% if settings.head_img_home_text == blank %}
+    {{ 'home_page.onboarding.heading_welcome' | t }}
+    {% else %}
+    {% assign icon_img = 'head_img_home_icon.png' | asset_url %}
+    <img style="max-width:230px;" src="{{ icon_img }}" alt="{{ shop.name | escape }}" />
+    <h1><span class="doodles">{{ shop.name  | remove: "Healing" | remove: " " }}</span><br>
+    <span class="dots">{{ settings.head_img_home_text }}</span></h1>
+    {% endif %}
+    </span>
+    </h1>
